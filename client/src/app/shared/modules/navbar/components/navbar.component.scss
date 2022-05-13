@@ -26,10 +26,31 @@
 
     .link-box {
         width: 100%;
+
+        a {
+            color: #FFFFFF;
+            width: 80%;
+            height: 2rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration-line: none;
+            transition-duration: .4s;
+            @include display-flex(initial, flex-start, center);
+            padding: .5rem 10%;
+
+            &.active {
+                @include add-short-shadow(inset);
+                background-color: $color-dark-secondary-hover;
+            }
+
+            &:hover {
+                @include add-short-shadow(inset);
+                background-color: $color-dark-secondary-hover;
+            }
+        }
     }
 }
 
-a[ng-reflect-router-link],
 .link {
     color: #FFFFFF;
     width: 80%;
