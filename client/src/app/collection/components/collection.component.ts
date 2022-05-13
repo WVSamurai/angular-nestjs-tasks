@@ -12,7 +12,7 @@ import { selectCollection } from 'src/app/collections/store/selectors'
 import { deleteCollectionAction } from './../../collections/store/actions/delete.action'
 import { createTaskAction } from 'src/app/collections/store/actions/createTask.action'
 import { getCollectionsAction } from './../../collections/store/actions/get.action'
-import { selectIsLoggedIn } from 'src/app/auth/store/selectors';
+import { selectIsLoggedIn } from 'src/app/auth/store/selectors'
 
 @Component({
     selector: 'collection',
@@ -29,7 +29,6 @@ export class CollectionComponent implements OnInit, OnDestroy {
     isAdd: boolean = false
     newTaskText: string = ''
     newTaskDate: Date | null = null
-    isLoggedIn!: boolean
     isLogSubscription!: Subscription
 
     constructor(
@@ -39,9 +38,6 @@ export class CollectionComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.route.params.subscribe(params => this._id = params['id'])
-        this.isLogSubscription = this.store.pipe(
-            select(selectIsLoggedIn)
-        ).subscribe(res => this.isLoggedIn = res)
         
         this.collSubscription = this.store.pipe(
             select(selectCollection(this._id))
@@ -51,7 +47,11 @@ export class CollectionComponent implements OnInit, OnDestroy {
     
                 this.filterTasks(this.collection.tasks)
             } else {
-                this.isLoggedIn && this.store.dispatch(getCollectionsAction())
+                this.isLogSubscription = this.store.pipe(
+                    select(selectIsLoggedIn)
+                ).subscribe(res => {
+                    res && this.store.dispatch(getCollectionsAction())
+                })
             }
         })
     }
