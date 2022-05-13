@@ -27,7 +27,7 @@
             <button class="submit-btn" [disabled]="isSubmitting$ | async">Submit</button>
 
             <div class="underline"></div>
-            <div class="account-question">Don't have an account? <a routerLink="/register">Create</a></div>
+            <div class="account-question">Don't have an account? <a [routerLink]="['/register']">Create</a></div>
         </form>
     </div>
 </div>

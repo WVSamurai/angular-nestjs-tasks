@@ -57,8 +57,8 @@ export class CollectionComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.collSubscription.unsubscribe()
-        this.isLogSubscription.unsubscribe()
+        this.collSubscription && this.collSubscription.unsubscribe()
+        this.isLogSubscription && this.isLogSubscription.unsubscribe()
     }
 
     filterTasks(tasks: CollectionInterface['tasks']) {

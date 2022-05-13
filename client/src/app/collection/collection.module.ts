@@ -16,7 +16,7 @@ const routes: Routes = [
         component: CollectionComponent,
         resolve: [IsLoggedInGuard]
     },
-    { path: '**', component: NotFoundComponent }
+    { path: '**', redirectTo: 'home' }
 ]
 
 @NgModule({
@@ -26,6 +26,6 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         TaskModule,
     ],
-    declarations: [CollectionComponent],
+    declarations: [CollectionComponent]
 })
 export class CollectionModule {}

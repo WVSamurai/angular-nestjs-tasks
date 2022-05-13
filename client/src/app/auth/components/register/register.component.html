@@ -35,7 +35,7 @@
             <button class="submit-btn" [disabled]="isSubmitting$ | async">Submit</button>
 
             <div class="underline"></div>
-            <div class="account-question">Already have an account? <a routerLink="/login">Sign In</a></div>
+            <div class="account-question">Already have an account? <a [routerLink]="['/login']">Sign In</a></div>
         </form>
     </div>
 </div>
