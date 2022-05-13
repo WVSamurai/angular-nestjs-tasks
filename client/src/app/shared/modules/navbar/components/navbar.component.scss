@@ -1,0 +1,76 @@
+@import "src/styles.scss";
+
+.navbar {
+    height: 90vh;
+    width: 18%;
+    background-color: $color-dark-secondary;
+    padding: 5vh 0;
+    @include display-flex(column, space-between, center);
+    position: fixed;
+
+    @media only screen and (max-width: 1024px) {
+        left: -100%;
+        width: 100%;
+        text-align: center;
+        transition: 0.4s;
+        padding-top: 12vh;
+        height: 83vh;
+        z-index: 4;
+        box-shadow:
+            0 10px 27px rgba(0, 0, 0, 0.05);
+    
+        &.active {
+            left: 0;
+        }    
+    }
+
+    .link-box {
+        width: 100%;
+    }
+}
+
+a[ng-reflect-router-link],
+.link {
+    color: #FFFFFF;
+    width: 80%;
+    height: 2rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration-line: none;
+    transition-duration: .4s;
+    @include display-flex(initial, flex-start, center);
+    padding: .5rem 10%;
+
+    &.active {
+        @include add-short-shadow(inset);
+        background-color: $color-dark-secondary-hover;
+    }
+
+    &:hover {
+        @include add-short-shadow(inset);
+        background-color: $color-dark-secondary-hover;
+    }
+}
+
+.hamburger {
+    display: none;
+    z-index: 5;
+
+    @media screen and (max-width: 1024px) {
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+    }
+
+    .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        background-color: #FFFFFF;
+    }
+}

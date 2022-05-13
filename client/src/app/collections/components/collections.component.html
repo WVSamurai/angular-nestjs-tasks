@@ -1,0 +1,36 @@
+<div class="collections-page">
+    <div class="collections-component">
+        <h1>Collections</h1>
+
+        <div class="collections">
+            <div 
+                class="collection"
+                *ngFor="let collection of values"
+                [routerLink]="[collection._id]"
+            >
+                <div class="color" [ngStyle]="{ 'background-color': '#' + collection.hex}" ></div>
+                <div class="under-color"></div>
+                <h2>{{ collection.name }}</h2>
+                <span class="tasks">{{ getTasksLen(collection.tasks) }}</span>
+            </div>
+
+            <div (click)="onToggleCreate()" *ngIf="!isCreating; else creatingBlock" class="create-collection">
+                <h3>&plus;</h3>
+            </div>
+
+            <ng-template #creatingBlock>
+                <div class="collection">
+                    <div class="color" [ngStyle]="{ 'background-color': '#' + randomHex}"></div>
+                    <div class="under-color"></div>
+                    <input type="text" class="col-input"  [(ngModel)]="collectionName">
+                    <button (click)="onToggleCreate()" class="cancel-btn">Cancel</button>
+                    <button 
+                        (click)="onCreate()" 
+                        class="create-btn" 
+                        [disabled]="isSubmitting$ | async"
+                    >Create</button>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

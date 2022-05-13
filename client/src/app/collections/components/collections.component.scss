@@ -1,0 +1,130 @@
+@import 'src/styles.scss';
+
+.collections-page {
+    @include page;
+
+    .collections-component {
+        @include component;
+
+        h1 { @include global-title; }
+
+        .collections {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 1rem;
+            width: 100%;
+            padding-top: 2rem;
+
+            @media screen and (max-width: 480px) {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .collection {
+                width: 100%;
+                height: 10rem;
+                border-radius: 20px;
+                background-color: $color-dark-secondary;
+                position: relative;
+                cursor: pointer;
+                transition-duration: .4s;
+
+                &:hover {
+                    @include add-short-shadow();
+                    transform: scale(1.05);
+                }
+
+                .color {
+                    border-radius: 20px 20px 0 0;
+                    height: 2rem;
+                    width: 100%;
+                }
+
+                .under-color {
+                    border-radius: 15px 15px 0 0;
+                    margin-top: -10px;
+                    background-color: $color-dark-secondary;
+                    height: 2rem;
+                    width: 100%;
+                }
+
+                .col-input {
+                    width: 80%;
+                    padding: .5rem;
+                    border-radius: 10px;
+                    border: none;
+                    background-color: $color-dark-secondary-hover;
+                    color: #FFFFFF;
+                    transition-duration: .4s;
+                    font-weight: 500;
+                    font-size: 1rem;
+                    @include add-short-shadow(inset);
+                    position: absolute;
+                    bottom: 3rem;
+                    left: .5rem;
+
+                    &:focus {
+                        outline: none;
+                        @include add-long-shadow(inset)
+                    }
+
+                    &:-webkit-autofill,
+                    &:-webkit-autofill:focus {
+                        transition: background-color 600000s 0s, color 600000s 0s;
+                    }
+                }
+
+                .tasks {
+                    color: #404046;
+                    position: absolute;
+                    font-size: .9rem;
+                    bottom: 1rem;
+                    padding: 0 1rem;
+                }
+
+                h2 {
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    padding: 0 1rem;
+                    position: absolute;
+                    bottom: 3rem;
+                    overflow: hidden;
+                    max-width: 70%;
+                }
+
+                .cancel-btn {
+                    position: absolute;
+                    bottom: 1rem;
+                    left: 1rem;
+                    width: 4rem;
+                    height: 1.5rem;
+                    @include cancel-btn;
+                }
+
+                .create-btn {
+                    width: 4rem;
+                    height: 1.5rem;
+                    position: absolute;
+                    bottom: 1rem;
+                    right: 1rem;
+                    @include create-btn;
+                }
+            }
+
+            .create-collection {
+                width: 100%;
+                height: 5rem;
+                border-radius: 20px;
+                position: relative;
+                border: 2px solid $color-dark-secondary;
+                @include display-flex(row, center, center);
+                cursor: pointer;
+                transition-duration: .4s;
+
+                &:hover {
+                    background-color: $color-dark-secondary;
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+}

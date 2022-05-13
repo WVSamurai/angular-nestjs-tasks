@@ -1,0 +1,14 @@
+<div class="hamburger" (click)="onOpen()" *ngIf="isLoggedIn$ | async">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+</div>
+<div class="navbar" [ngClass]="isOpen ? 'active' : ''" *ngIf="isLoggedIn$ | async">
+
+    <div class="link-box">
+        <a (click)="removeIsOpen()" routerLink="/home" routerLinkActive="link active">Home</a>
+        <a (click)="removeIsOpen()" routerLink="/collections" routerLinkActive="link active">Collections</a>
+    </div>
+
+    <a class="link" (click)="onLogout()">Logout</a>
+</div>

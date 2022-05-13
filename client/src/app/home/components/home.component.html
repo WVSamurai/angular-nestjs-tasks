@@ -1,0 +1,42 @@
+<div class="home-page">
+    <div class="home-component" *ngIf="username$ | async">
+        <h1 class="greeting">{{ checkDate() }}, <br>{{ username$ | async }}</h1>
+
+        <h3 class="no-coll" *ngIf="!values.length">You have not created any collections</h3>
+        <div class="collections">
+            <div
+                class="collection"
+                *ngFor="let coll of values"
+                [ngStyle]="{
+                    'border-top': '15px solid ' + '#' + coll.hex
+                }"
+            >
+                <div>
+                    <div class="col-name">
+                        <h3>{{ coll.name }}</h3>
+                    </div>
+    
+                    <div class="col-tasks" *ngIf="tasksValues(coll.tasks).length; else elseBlock">
+                        <task
+                            *ngFor="let task of tasksValues(coll.tasks)"
+                            [isCompleted]="task.completed"
+                            [text]="task.text"
+                            [time]="task.completeTo">
+                        </task>
+                    </div>
+
+                    <ng-template #elseBlock>
+                        <div class="col-tasks">
+                            <h4>No tasks for today</h4>
+                        </div>
+                    </ng-template>
+    
+                    <div class="col-link" [routerLink]="['/collections', coll._id]">
+                        <h4>Go to Collection &rarr;</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

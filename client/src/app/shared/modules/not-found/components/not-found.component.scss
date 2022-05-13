@@ -1,0 +1,14 @@
+@import 'src/styles.scss';
+
+.not-found-page {
+    @include page;
+
+    .not-found-component {
+        @include component;
+        @include display-flex(row, center, center);
+
+        h1 {
+            
+        }
+    }
+}

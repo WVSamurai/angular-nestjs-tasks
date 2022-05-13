@@ -1,0 +1,81 @@
+<div class="collection-page" (click)="show($event.target)">
+    <div class="collection-component" *ngIf="collection">
+        <div class="heading">
+            <span class="back" routerLink="/collections" >&lt;</span>
+            <h1>{{ collection.name }}</h1>
+
+            <div id="show-more" class="more" (click)="showMore = !showMore">
+                <div id="show-more"></div>
+                <div id="show-more"></div>
+                <div id="show-more"></div>
+            </div>
+
+            <div id="show-more" class="show-more" *ngIf="showMore" (click)="onDelete()">
+                Delete
+            </div>
+        </div>
+
+        <div class="add-task" *ngIf="!isAdd; else elseBlock" (click)="onAdd()">
+            <button
+                class="add-task-btn"
+                [ngStyle]="{ 'background-color': '#' + collection.hex}"
+            >
+                &plus;
+            </button>
+            <h3>Add a task</h3>
+        </div>
+
+        <ng-template #elseBlock>
+            <div class="add-task-open">
+                <p>Add text</p>
+                <input type="text" class="text-input" [(ngModel)]="newTaskText">
+                <p>Add time</p>
+                <input
+                    class="date-input"
+                    type="date"
+                    name="complete-to"
+                    [min]="todayDate()"
+                    [(ngModel)]="newTaskDate"
+                >
+                <div>
+                    <button (click)="onAdd()" class="cancel-btn">Cancel</button>
+                    <button 
+                        (click)="onCreate()" 
+                        class="create-btn" 
+                        [disabled]="false"
+                    >Create</button>
+                </div>
+            </div>
+        </ng-template>
+
+        <div class="tasks">
+            <h4>Tasks - {{ tasks.length }}</h4>
+            <task
+                *ngFor="let task of tasks"
+                [isCompleted]="task.completed"
+                [text]="task.text" 
+                [isFull]="true"
+                [hex]="collection.hex"
+                [time]="task.completeTo"
+                [_id]="task._id"
+                [collId]="collection._id"
+            >
+            </task>
+        </div>
+
+        <div class="completed">
+            <h4>Completed - {{ completedTasks.length }}</h4>
+            <task
+                *ngFor="let task of completedTasks"
+                [isCompleted]="task.completed"
+                [text]="task.text"
+                [isFull]="true"
+                [hex]="collection.hex"
+                [time]="task.completeTo"
+                [_id]="task._id"
+                [collId]="collection._id"
+            >
+            </task>
+        </div>
+    </div>
+</div>

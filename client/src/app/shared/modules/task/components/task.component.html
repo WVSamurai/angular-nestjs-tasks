@@ -1,0 +1,24 @@
+<div class="task" [ngClass]="isFull ? 'full' : ''" >
+    <label class="container" *ngIf="isFull">
+        <input type="checkbox" [(ngModel)]="isCompleted">
+        <span
+            class="checkmark"
+            [ngStyle]="{
+                'background-color': isCompleted ? '#' + hex : '',
+                'border': '2px solid #' + hex
+            }"
+            (click)="onUpdate()"
+        >
+        </span>
+    </label>
+    <div>
+        <h4 [ngClass]="isCompleted ? 'completed' : ''" >{{ text }}</h4>
+        <span
+            class="time"
+            [ngStyle]="{'color': checkTime ? 'rgb(24, 168, 24)' : 'rgb(179, 62, 62)'}"
+        >
+            {{ time ? (time | date) : 'No time' }}
+        </span>
+    </div>
+    <div class="delete" *ngIf="isFull" (click)="onDelete()">&times;</div>
+</div>

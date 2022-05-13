@@ -1,0 +1,123 @@
+@import 'src/styles.scss';
+
+.auth-page {
+    @include display-flex(column, center, center);
+    min-height: 100vh;
+
+    .auth-container {
+        background-color: $color-dark-secondary;
+        width: 40%;
+        border-radius: 20px;
+
+        @media screen and (max-width: 480px) {
+            width: 100%;
+            border-radius: 0;
+            height: 100vh;
+            @include display-flex(column, center, center);
+        }
+
+        form {
+            padding: 1rem;
+            @include display-flex(column, center, center);
+
+            h1 {
+                text-align: center;
+                font-weight: 700;
+                font-size: 2rem;
+                margin: 1rem 0;
+            }
+
+            .underline {
+                height: 1px;
+                width: 60%;
+                background-color: $color-dark-secondary-hover;
+            }
+
+            .inputs-container {
+                @include display-flex(column, center, center);
+                margin-top: 1rem;
+
+                .input-box {
+                    @include display-flex(column, flex-start, center);
+
+                    .input {
+                        width: 15rem;
+                        height: 2rem;
+                        padding: .5rem;
+                        border: none;
+                        border-radius: 10px;
+                        background-color: $color-dark-secondary-hover;
+                        color: #FFFFFF;
+                        transition-duration: .4s;
+                        font-weight: 500;
+                        font-size: 1rem;
+                        @include add-short-shadow(inset);
+                        margin-bottom: 0;
+
+                        &:focus {
+                            outline: none;
+                            @include add-long-shadow(inset)
+                        }
+
+                        &:-webkit-autofill,
+                        &:-webkit-autofill:focus {
+                            transition: background-color 600000s 0s, color 600000s 0s;
+                        }
+                    }
+
+                    label {
+                        color: #FFFFFF;
+                        font-weight: 500;
+                        font-size: 1rem;
+                        padding: 2.5% 5%;
+                        width: 90%;
+                    }
+
+                    span.error {
+                        color: rgb(179, 62, 62);
+                        font-weight: 500;
+                        font-size: .7rem;
+                        width: 95%;
+                        padding: 2.5%;
+                        height: 1rem;
+                    }
+                }
+            }
+
+            .submit-btn {
+                width: 12rem;
+                height: 2.5rem;
+                padding: .5rem;
+                border: none;
+                border-radius: 10px;
+                background-color: #667797;
+                color: #FFFFFF;
+                transition-duration: .4s;
+                font-weight: 500;
+                font-size: 1rem;
+                margin: 1rem 0 2rem 0;
+                cursor: pointer;
+
+                &:hover {
+                    @include add-long-shadow();
+                }
+
+                &:disabled {
+                    background-color: #AAAAAD;
+                    cursor: not-allowed;
+                }
+            }
+
+            .account-question {
+                margin: 1rem 0;
+                color: #FFFFFF;
+
+                & a {
+                    cursor: pointer;
+                    color: #DF2E59;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

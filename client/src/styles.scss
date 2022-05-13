@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+$color-dark-main: #101015;
+$color-dark-secondary: #20202A;
+$color-dark-secondary-hover: #272734;
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+
+    input {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    p, h1, h2, h3, h4, h5, h6 {
+        color: #FFFFFF;
+    }
+}
+
+@mixin display-flex ($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin add-short-shadow ($inset: null) {
+    box-shadow: 
+        $inset 0px 3px 4px 0px hsla(0,0%,0%,0.14), 
+        $inset 0px 3px 3px -2px hsla(0,0%,0%,0.12), 
+        $inset 0px 1px 8px 0px hsla(0,0%,0%,0.2);
+}
+
+@mixin add-long-shadow ($inset: null) {
+    box-shadow: 
+        $inset 0px 8px 10px 1px hsla(0,0%,0%,0.14), 
+        $inset 0px 3px 14px 2px hsla(0,0%,0%,0.12), 
+        $inset 0px 5px 5px -3px hsla(0,0%,0%,0.2);
+}
+
+@mixin global-title {
+    text-align: left;
+    font-size: 2.5rem;
+}
+
+@mixin page {
+    margin-left: 18%;
+    @include display-flex(column, center, center);
+    min-height: 100vh;
+
+    @media screen and (max-width: 1024px) {
+        margin: 0;
+    }
+}
+
+@mixin component {
+    width: 50%;
+    min-height: 70vh;
+    padding: 15vh 0;
+
+    @media screen and (max-width: 768px) {
+        width: 90%;
+    }
+}
+
+@mixin cancel-btn {
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(179, 62, 62);
+    color: #FFFFFF;
+    transition-duration: .4s;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+        @include add-long-shadow();
+    }
+}
+
+@mixin create-btn {
+    border: none;
+    border-radius: 10px;
+    background-color: #667797;
+    color: #FFFFFF;
+    transition-duration: .4s;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+        @include add-long-shadow();
+    }
+
+    &:disabled {
+        background-color: #AAAAAD;
+        cursor: not-allowed;
+    }
+}

@@ -1,0 +1,106 @@
+@import 'src/styles.scss';
+
+.task {
+    @include display-flex(row, flex-start, center);
+    padding: 1rem;
+    position: relative;
+
+    &.full {
+        background-color: $color-dark-secondary;
+        border-radius: 15px;
+        margin-bottom: .5rem;
+    }
+
+    .container {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        margin-right: 1rem;
+        position: relative;
+        cursor: pointer;
+        
+        input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            height: 0;
+            width: 0;
+            cursor: pointer;
+        }
+
+        .checkmark {
+            top: 0;
+            left: 0;
+            border-radius: 8px;
+            padding: 0 10px;
+            border: 2px solid #fad123;
+            transition-duration: .4s;
+        }
+
+        input:checked ~ .checkmark {
+            background-color: #fad123;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        .checkmark:after {
+            left: 8px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid $color-dark-secondary;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }
+
+    div {
+        padding-right: 2rem;
+
+        h4 {
+            font-weight: 400;
+            word-break: break-all;
+        
+            &.completed {
+                text-decoration-line: line-through;
+                color: #626268;
+            }
+        }
+    }
+
+
+    .time {
+        color: rgb(179, 62, 62);
+        font-weight: 500;
+        font-size: .7rem;
+        width: 95%;
+        height: 1rem;
+    }
+
+    .delete {
+        color: rgb(179, 62, 62);
+        font-size: 1.5rem;
+        position: absolute;
+        right: 1rem;
+        padding: 0 .5rem;
+        transition-duration: .4s;
+        cursor: pointer;
+        border-radius: 10px;
+
+        &:hover {
+            background-color: $color-dark-secondary-hover;
+            transform: scale(1.05);
+            @include add-long-shadow;
+        }
+    }
+}

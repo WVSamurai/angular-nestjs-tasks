@@ -1,0 +1,69 @@
+@import 'src/styles.scss';
+
+.home-page {
+    @include page;
+
+    .home-component {
+        @include component;
+
+        .no-coll {
+            padding-top: 3rem;
+        }
+
+        .greeting {
+            @include global-title;
+        }
+
+        .collections {
+            @include display-flex(column, center, center);
+            margin-top: 2rem;
+
+            div.collection {
+                border-radius: 15px;
+                background-color: $color-dark-secondary;
+                width: 100%;
+                position: relative;
+                margin-bottom: 2rem;
+
+                .col-name {
+                    padding: 1rem;
+                    background-color: $color-dark-secondary-hover;
+
+                    h3 {
+                        font-weight: 500;
+                        overflow: hidden;
+                    }
+                }
+
+                .col-tasks {
+                    margin-bottom: 3.25rem;
+
+                    h4 {
+                        padding: 1rem;
+                        font-weight: 300;
+                    }
+                }
+
+                .col-link {
+                    padding: 1rem 5%;
+                    width: 90%;
+                    transition-duration: .4s;
+                    border-top: 3px solid $color-dark-secondary-hover;
+                    border-radius: 0 0 15px 15px;
+                    position: absolute;
+                    bottom: 0;
+                    cursor: pointer;
+
+                    h4 {
+                        text-align: center;
+                        font-weight: 400;
+                    }
+
+                    &:hover {
+                        background-color: $color-dark-secondary-hover;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+<div class="auth-page">
+    <div class="auth-container">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+            <h1>Sign Up</h1>
+            <div class="underline"></div>
+
+            <div class="inputs-container">
+                <div class="input-box">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="input" formControlName="username">
+                    <span class="error">
+                        {{ validationErrors.username ? 'Username should be valid' : ''}}
+                    </span>
+                </div>
+
+                <div class="input-box">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" class="input" formControlName="email">
+                    <span class="error">
+                        {{ validationErrors.email ? 'Email should be valid' : ''}}
+                    </span>
+                </div>
+
+                <div class="input-box">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="input" formControlName="password">
+                    <span class="error">
+                        {{ validationErrors.password ? 'Password should be at least 8 characters' : ''}}
+                    </span>
+                </div>
+            </div>
+
+            <span [ngStyle]="{'color': 'rgb(179, 62, 62)'}">{{ errors$ | async }}</span>
+
+            <button class="submit-btn" [disabled]="isSubmitting$ | async">Submit</button>
+
+            <div class="underline"></div>
+            <div class="account-question">Already have an account? <a routerLink="/login">Sign In</a></div>
+        </form>
+    </div>
+</div>
