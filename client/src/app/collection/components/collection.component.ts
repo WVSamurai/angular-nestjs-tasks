@@ -1,17 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store, select } from '@ngrx/store'
-import { Subscription } from 'rxjs'
+import { Subscription, Observable } from 'rxjs'
 
 import { AppStateInterface } from 'src/app/shared/types/appState.interface'
 import { CollectionInterface } from 'src/app/collections/types/collection.interface'
 import { TaskInterface } from './../../shared/types/task.interface'
 
-import { selectCollection } from 'src/app/collections/store/selectors'
-
 import { deleteCollectionAction } from './../../collections/store/actions/delete.action'
 import { createTaskAction } from 'src/app/collections/store/actions/createTask.action'
 import { getCollectionsAction } from './../../collections/store/actions/get.action'
+import { selectCollection, selectIsLoading } from 'src/app/collections/store/selectors'
 import { selectIsLoggedIn } from 'src/app/auth/store/selectors'
 
 @Component({
@@ -30,6 +29,7 @@ export class CollectionComponent implements OnInit, OnDestroy {
     newTaskText: string = ''
     newTaskDate: Date | null = null
     isLogSubscription!: Subscription
+    isLoading$!: Observable<boolean>
 
     constructor(
         private store: Store<AppStateInterface>,
@@ -39,6 +39,9 @@ export class CollectionComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.route.params.subscribe(params => this._id = params['id'])
         
+        this.isLoading$ = this.store.pipe(
+            select(selectIsLoading)
+        )
         this.collSubscription = this.store.pipe(
             select(selectCollection(this._id))
         ).subscribe(coll => {

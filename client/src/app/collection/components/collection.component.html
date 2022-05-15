@@ -1,5 +1,6 @@
-<div class="collection-page" (click)="show($event.target)">
-    <div class="collection-component" *ngIf="collection">
+<not-found *ngIf="!collection && !(isLoading$ | async)"></not-found>
+<div class="collection-page" (click)="show($event.target)" *ngIf="collection">
+    <div class="collection-component">
         <div class="heading">
             <span class="back" [routerLink]="['/collections']" >&lt;</span>
             <h1>{{ collection.name }}</h1>

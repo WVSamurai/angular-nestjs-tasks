@@ -59,8 +59,12 @@ $color-dark-secondary-hover: #272734;
     min-height: 70vh;
     padding: 15vh 0;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 600px) {
         width: 90%;
+    }
+
+    @media screen and (max-width: 1024px) and (min-width: 601px) {
+        width: 60%;
     }
 }
 

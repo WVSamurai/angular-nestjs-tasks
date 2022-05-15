@@ -4,9 +4,9 @@ import { RouterModule, Routes } from '@angular/router'
 import { FormsModule } from '@angular/forms'
 
 import { TaskModule } from 'src/app/shared/modules/task/task.module'
+import { NotFoundModule } from '../shared/modules/not-found/not-found.module'
 
 import { CollectionComponent } from './components/collection.component'
-import { NotFoundComponent } from '../shared/modules/not-found/components/not-found.component'
 
 import { IsLoggedInGuard } from './../shared/guards/isLoggedIn.guard'
 
@@ -25,6 +25,7 @@ const routes: Routes = [
         FormsModule,
         RouterModule.forChild(routes),
         TaskModule,
+        NotFoundModule
     ],
     declarations: [CollectionComponent]
 })
